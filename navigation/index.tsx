@@ -23,7 +23,7 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
-            theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            theme={DefaultTheme}/*{colorScheme === 'dark' ? DarkTheme : DefaultTheme}*/>
             <RootNavigator/>
         </NavigationContainer>
     );
@@ -66,7 +66,7 @@ function BottomTabNavigator() {
                 name="TabOne"
                 component={TabOneScreen}
                 options={({navigation}: RootTabScreenProps<'TabOne'>) => ({
-                    title: 'Tab One',
+                    title: 'App Consultas',
                     tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
                     headerRight: () => (
                         <Pressable
