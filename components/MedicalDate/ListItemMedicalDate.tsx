@@ -22,6 +22,10 @@ export const ListItemMedicalDate = (props: {onPressCard: any , numero: number })
                 <Text style={styles.turnLabelItem}>Dr. José Sánchez</Text>
 
                 <Text style={styles.turnLabelItem}>Hora: 3:00p``</Text>
+                
+                <Text style={styles.turnLabelItem}><FontAwesome
+                    size={25}
+                    name={'trash'}/></Text>
 
             </TouchableOpacity>
 

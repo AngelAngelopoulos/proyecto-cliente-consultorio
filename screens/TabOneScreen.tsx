@@ -10,7 +10,16 @@ export default function TabOneScreen({navigation}: RootTabScreenProps<'TabOne'>)
 
 
     const onPressCard = () => {
-        navigation.navigate('Modal')
+        // @ts-ignore
+        navigation.navigate('Modal', {screen: 'Modal',
+            consultorio: "Dr. Simi",
+            turno_consulta: 1,
+            direccion: "Periférico #123 Col. El Aguaje",
+            telefono: '444444444',
+            prioridad: "Urgente",
+            navigation: navigation
+
+        })
     }
 
     return (
@@ -25,7 +34,7 @@ export default function TabOneScreen({navigation}: RootTabScreenProps<'TabOne'>)
                     Array.from(Array(10).keys()).map((item, key) => (
 
 
-                            <ListItemMedicalDate key={key} onPressCard={onPressCard} numero={item} />
+                        <ListItemMedicalDate key={key} onPressCard={onPressCard} numero={item}/>
 
                     ))
                 }
