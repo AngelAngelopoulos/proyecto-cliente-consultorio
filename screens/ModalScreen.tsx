@@ -15,7 +15,8 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
 import {InitialProps} from "expo/build/launch/withExpoRoot.types";
 import {FontAwesome} from "@expo/vector-icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {changePrioridad} from "../utils";
 
 interface Props {
     route: any,
@@ -23,21 +24,48 @@ interface Props {
 }
 
 export default function ModalScreen(props: any) {
-    const {consultorio, direccion, telefono, turno_consulta, prioridad} = props.route.params;
+    const {consultorio, direccion, telefono, turno_consulta, prioridad , _id} = props.route.params;
     const {navigation} = props
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [isEnabled, setIsEnabled] = useState(prioridad === "Urgente");
+    const [prioridadState, setPrioridadState] = useState(prioridad)
 
+    const toggleSwitch = () => {
+        setIsEnabled(previousState => !previousState);
+        console.log(prioridadState)
+        async function changePrioridadAsync() {
+            const res = await changePrioridad(_id, prioridadState)
+            if (!res.error)
+                changePriorAlert()
+                //console.log(res.result)
+        }
+        changePrioridadAsync();
+    }
+
+    useEffect(() => {
+        setPrioridadState(prioridad === "Urgente" ? "No urgente": "Urgente")
+    }, [])
+
+    const changePriorAlert = () => {
+        Alert.alert(
+            "✅",
+            "¡La prioridad de la consulta ha cambiado exitosamente!",
+            [
+                {text: "OK", onPress: () => {
+                        console.log("OK Pressed")
+                        navigation.navigate('TabOne')
+                    }}
+            ]
+        );
+    }
 
     const createOkAlert = () => {
         Alert.alert(
             "✅",
-            "¡La consulta se ha modificado exitosamente!",
+            "¡La consulta se ha cancelado exitosamente!",
             [
                 {text: "OK", onPress: () => {
                     console.log("OK Pressed")
                         navigation.navigate('TabOne')
-
                     }}
             ]
         );
@@ -46,15 +74,15 @@ export default function ModalScreen(props: any) {
     const createConfirmAlert = () =>
         Alert.alert(
             "Confirmación",
-            "¿Está seguro de modificar la consulta actual?",
+            "¿Está seguro de cancelar la consulta actual?",
             [
                 {
-                    text: "Cancel",
+                    text: "No",
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
                 {
-                    text: "OK", onPress: () => {
+                    text: "Si, cancelar", onPress: () => {
                         console.log("OK Pressed")
                         createOkAlert()
                     }
@@ -73,13 +101,12 @@ export default function ModalScreen(props: any) {
                     keyboardVerticalOffset={-100}
                     behavior={'position'}>
                 <View style={styles.container}>
-                    <Text style={styles.header}>Editar consulta</Text>
+                    <Text style={styles.header}>Detalles de consulta</Text>
                     <View style={styles.inputContainer}>
                         <Text style={styles.title}>Consultorio:</Text>
-                        <TextInput
+                        <Text
                             style={styles.inputValue}
-                            defaultValue={consultorio}
-                        />
+                        >{consultorio}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.title}>Dirección:</Text>
@@ -101,12 +128,17 @@ export default function ModalScreen(props: any) {
                         <View style={styles.titleFlex}>
 
                             <View style={styles.titleIconFlex}>
-                                <FontAwesome style={styles.iconFlex} name={'info-circle'} size={25}/>
+                                {
+                                    prioridad === "Urgente" ?
+                                        <FontAwesome style={{ color: 'red', marginRight: 10 }} name={'info-circle'} size={25}/>
+                                        : <FontAwesome style={{ color: 'black', marginRight: 10 }} name={'info-circle'} size={25}/>
+                                }
+
                                 <Text style={styles.title}>{prioridad}</Text>
                             </View>
                             <Switch
-                                trackColor={{false: "#767577", true: "#81b0ff"}}
-                                thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                                //trackColor={{false: "#767577", true: "#81b0ff"}}
+                                //thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
                                 ios_backgroundColor="#3e3e3e"
                                 onValueChange={toggleSwitch}
                                 value={isEnabled}
@@ -117,7 +149,7 @@ export default function ModalScreen(props: any) {
                     <TouchableOpacity
                         style={styles.buttonForm}
                         onPress={createConfirmAlert}
-                    ><Text style={styles.title}>Editar</Text></TouchableOpacity>
+                    ><Text style={styles.title}>Cancelar</Text></TouchableOpacity>
 
 
                     {/* Use a light status bar on iOS to account for the black space above the modal */}
@@ -155,11 +187,17 @@ const styles = StyleSheet.create({
     inputValue: {
         fontSize: 20,
         fontWeight: 'bold',
-        borderWidth: 2,
-        borderColor: 'black',
-        borderRadius: 8,
+        //borderWidth: 2,
+        //borderColor: 'black',
+        //borderRadius: 8,
+        /*shadowOffset: {
+            width: 4,
+            height: 4,
+        },
+        shadowColor: '#C4c4c4',
+        shadowOpacity: 0.8,*/
         paddingVertical: 2,
-        paddingHorizontal: 4,
+        //paddingHorizontal: 4,
         width: '100%',
         marginTop: '3%'
     },

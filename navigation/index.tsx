@@ -14,8 +14,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import TabConsultasScreen from '../screens/TabConsultasScreen';
+import TabPacienteScreen from '../screens/TabPacienteScreen';
 import {RootStackParamList, RootTabParamList, RootTabScreenProps} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -64,7 +64,7 @@ function BottomTabNavigator() {
             }}>
             <BottomTab.Screen
                 name="TabOne"
-                component={TabOneScreen}
+                component={TabConsultasScreen}
                 options={({navigation}: RootTabScreenProps<'TabOne'>) => ({
                     title: 'App Consultas',
                     tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
@@ -86,7 +86,7 @@ function BottomTabNavigator() {
             />
             <BottomTab.Screen
                 name="TabTwo"
-                component={TabTwoScreen}
+                component={TabPacienteScreen}
                 options={({navigation}: RootTabScreenProps<'TabTwo'>) => ({
                     title: 'Tab Two',
                     tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,

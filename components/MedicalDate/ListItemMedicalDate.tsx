@@ -3,8 +3,31 @@ import {Button, StyleSheet, TouchableOpacity, View as NativeView} from "react-na
 import {Text, View} from "../Themed";
 import {FontAwesome} from "@expo/vector-icons";
 
-export const ListItemMedicalDate = (props: {onPressCard: any , numero: number }) => {
-    const {numero, onPressCard} = props;
+import { Consulta } from '../../types/index'
+
+interface Props {
+    navigation: any,
+    consulta: Consulta
+
+}
+
+export const ListItemMedicalDate = (props: Props) => {
+    const {consulta, navigation} = props;
+
+
+    const onPressCard = () => {
+        // @ts-ignore
+        navigation.navigate('Modal', {
+            screen: 'Modal',
+            consultorio: consulta.consultorio.nombre,
+            turno_consulta: consulta.numero_turno,
+            direccion: consulta.consultorio.direccion,
+            telefono: consulta.consultorio.telefono,
+            prioridad: consulta.prioridad,
+            _id: consulta._id
+
+        })
+    }
 
     return (
         <View style={styles.cardItem}>
@@ -14,18 +37,15 @@ export const ListItemMedicalDate = (props: {onPressCard: any , numero: number })
                     <View style={styles.turnLabelItemView}>
                         <Text style={styles.turnLabelItem}>No. de turno:</Text>
                     </View>
-                    <Text style={styles.cardTitle}>{numero}</Text>
+                    <Text style={styles.cardTitle}>{consulta.numero_turno}</Text>
                 </View>
 
-                <Text style={styles.cardTitle}>Cita Dr. Simi</Text>
+                <Text style={styles.cardTitle}>{consulta.consultorio.nombre}</Text>
 
-                <Text style={styles.turnLabelItem}>Dr. José Sánchez</Text>
+                <Text style={styles.turnLabelItem}>{consulta.medico.nombre}</Text>
 
-                <Text style={styles.turnLabelItem}>Hora: 3:00p``</Text>
-                
-                <Text style={styles.turnLabelItem}><FontAwesome
-                    size={25}
-                    name={'trash'}/></Text>
+                <Text style={styles.turnLabelItem}>{consulta.fecha} - {consulta.hora}</Text>
+
 
             </TouchableOpacity>
 
