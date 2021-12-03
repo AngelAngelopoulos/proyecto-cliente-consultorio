@@ -66,13 +66,14 @@ function BottomTabNavigator() {
                 name="TabOne"
                 component={TabConsultasScreen}
                 options={({navigation}: RootTabScreenProps<'TabOne'>) => ({
-                    title: 'App Consultas',
-                    tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
+                    title: 'Mis Consultas',
+                    tabBarIcon: ({color}) => <TabBarIcon name="calendar-o" color={color}/>,
                     headerRight: () => (
                         <Pressable
                             onPress={() => navigation.navigate('Modal')}
                             style={({pressed}) => ({
                                 opacity: pressed ? 0.5 : 1,
+                                paddingRight: '20%'
                             })}>
                             <FontAwesome
                                 name="info-circle"
@@ -88,13 +89,15 @@ function BottomTabNavigator() {
                 name="TabTwo"
                 component={TabPacienteScreen}
                 options={({navigation}: RootTabScreenProps<'TabTwo'>) => ({
-                    title: 'Tab Two',
-                    tabBarIcon: ({color}) => <TabBarIcon name="code" color={color}/>,
+                    title: 'Mi Información',
+                    tabBarIcon: ({color}) => <TabBarIcon name="user" color={color}/>,
                     headerRight: () => (
                         <Pressable
                             onPress={() => navigation.navigate('Modal')}
                             style={({pressed}) => ({
                                 opacity: pressed ? 0.5 : 1,
+                                paddingRight: '20%'
+
                             })}>
                             <FontAwesome
                                 name="info-circle"

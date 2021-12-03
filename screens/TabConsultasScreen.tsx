@@ -41,16 +41,12 @@ export default function TabConsultasScreen({navigation}: RootTabScreenProps<'Tab
 
                 <Text style={styles.title}>Mis consultas</Text>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
-                <Text>
-                    {
-                        consultas && JSON.stringify(consultas)
-                    }
-                </Text>
+
 
 
                 {/*<EditScreenInfo path="/screens/TabConsultasScreen.tsx" />*/}
                 {
-                    consultas && consultas.map((item, key) => (
+                    consultas ? consultas.map((item, key) => (
 
 
                         <ListItemMedicalDate key={key}
@@ -59,6 +55,7 @@ export default function TabConsultasScreen({navigation}: RootTabScreenProps<'Tab
                         />
 
                     ))
+                        : <Text>Cargando...</Text>
 
                 }
 
