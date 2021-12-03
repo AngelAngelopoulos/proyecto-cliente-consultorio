@@ -29,8 +29,8 @@ export default function ModalScreen(props: any) {
     const [isEnabled, setIsEnabled] = useState(prioridad === "Urgente");
     const [prioridadState, setPrioridadState] = useState(prioridad)
 
-    const toggleSwitch = () => {
-        setIsEnabled(!isEnabled);
+    const toggleSwitch = async () => {
+        //setIsEnabled(value);
         console.log(prioridadState)
         async function changePrioridadAsync() {
             const res = await changePrioridad(_id, prioridadState)
@@ -140,7 +140,10 @@ export default function ModalScreen(props: any) {
                                 //trackColor={{false: "#767577", true: "#81b0ff"}}
                                 //thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
                                 ios_backgroundColor="#3e3e3e"
-                                onValueChange={toggleSwitch}
+                                onValueChange={async (value) => {
+                                    setIsEnabled(value)
+                                    toggleSwitch()
+                                }}
                                 value={isEnabled}
                             />
                         </View>
