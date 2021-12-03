@@ -30,7 +30,7 @@ export default function ModalScreen(props: any) {
     const [prioridadState, setPrioridadState] = useState(prioridad)
 
     const toggleSwitch = () => {
-        setIsEnabled(previousState => !previousState);
+        setIsEnabled(!isEnabled);
         console.log(prioridadState)
         async function changePrioridadAsync() {
             const res = await changePrioridad(_id, prioridadState)
