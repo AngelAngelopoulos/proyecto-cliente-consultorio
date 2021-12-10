@@ -13,7 +13,9 @@ import {Consulta, Medico} from "../typesData";
 import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import Colors from "../constants/Colors";
 
-
+/**
+ *Tab de Consultas del Sistema
+ */
 export default function TabConsultasScreen({navigation}: RootTabScreenProps<'TabOne'>) {
 
     const [consultasGlobal, setConsultasGlobal] = useState<Consulta[]>([])

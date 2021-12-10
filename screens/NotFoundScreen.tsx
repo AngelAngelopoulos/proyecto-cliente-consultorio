@@ -4,6 +4,9 @@ import { Text, View } from '../components/Themed';
 
 import { RootStackScreenProps } from '../types';
 
+/**
+ * Pantalla en caso que no se encuentre pantalla
+ */
 export default function NotFoundScreen({ navigation }: RootStackScreenProps<'NotFound'>) {
   return (
     <View style={styles.container}>

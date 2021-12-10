@@ -10,6 +10,9 @@ interface Props {
     consulta: Consulta
 }
 
+/**
+ * Componente para representar los datos de una consulta
+ */
 export const ListItemMedicalDate = (props: Props) => {
     const {consulta, navigation} = props;
 

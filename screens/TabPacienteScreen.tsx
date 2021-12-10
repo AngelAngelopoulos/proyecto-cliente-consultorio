@@ -7,6 +7,9 @@ import {useEffect, useState} from "react";
 import {Paciente} from "../typesData";
 import {getAllConsultorios, getPaciente} from "../utils";
 
+/**
+ * Tab de Consultas del Paciente
+ */
 export default function TabPacienteScreen() {
 
     const [user, setUser] = useState<Paciente | null>(null)

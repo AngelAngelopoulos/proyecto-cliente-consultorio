@@ -1,5 +1,3 @@
-
-
 export interface Consulta {
     "_id": string,
     "numero_turno": number,

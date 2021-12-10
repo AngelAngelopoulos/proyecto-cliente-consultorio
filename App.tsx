@@ -8,6 +8,9 @@ import Navigation from './navigation';
 import {AntDesign, FontAwesome} from "@expo/vector-icons";
 import {TouchableOpacity, StyleSheet} from "react-native";
 
+/**
+ * Es la aplicación principal del programa
+ */
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();

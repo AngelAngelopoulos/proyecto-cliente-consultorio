@@ -23,6 +23,9 @@ interface Props {
     navigation: any
 }
 
+/**
+ * Modal que lista los datos de la consulta
+ */
 export default function ModalScreen(props: any) {
     const {consultorio, direccion, telefono, turno_consulta, prioridad , _id, is_active} = props.route.params;
     const {navigation} = props

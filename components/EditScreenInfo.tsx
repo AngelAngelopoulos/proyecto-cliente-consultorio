@@ -6,6 +6,9 @@ import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
+/**
+ * Modal que es lanzada al presionar el botón de Info (Sin utilizar)
+ */
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>

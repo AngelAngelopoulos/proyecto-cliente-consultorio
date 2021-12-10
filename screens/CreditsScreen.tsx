@@ -4,7 +4,9 @@ import {Image, ScrollView, StyleSheet, Switch, TouchableOpacity} from 'react-nat
 import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
 
-
+/**
+ * Pantalla de Créditos de la Aplicación
+ */
 export default function CreditsScreen() {
     return (
         <ScrollView>

@@ -27,6 +27,9 @@ interface Props {
     navigation: any
 }
 
+/**
+ * Modal para agendar una consulta en el sistema
+ */
 export default function ModalCreateScreen(props: any) {
     const {navigation} = props
 

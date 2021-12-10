@@ -2,6 +2,9 @@ import {Consulta} from "../typesData/Consulta";
 
 const URL = "https://secret-eyrie-09393.herokuapp.com/api"
 
+/**
+ * Nos regresa todas las consultas guardadas en el backend
+ */
 export const getAllConsultas = async () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -21,6 +24,9 @@ export const getAllConsultas = async () => {
     else return {error: res.statusText};
 }
 
+/**
+ * Nos permite cambiar la prioridad de la consulta
+ */
 export const changePrioridad = async (id: string, prioridad: string) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -41,6 +47,9 @@ export const changePrioridad = async (id: string, prioridad: string) => {
     else return {error: res.statusText};
 }
 
+/**
+ * Nos regresa todas los consultorios guardados en el backend
+ */
 export const getAllConsultorios = async () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -60,6 +69,9 @@ export const getAllConsultorios = async () => {
     else return {error: res.statusText};
 }
 
+/**
+ * Nos permite crear una consulta en el sistema
+ */
 export const createConsulta = async (consultorio: string,
                                      medico: string,
                                      paciente: string,
@@ -93,6 +105,9 @@ export const createConsulta = async (consultorio: string,
     else return {error: res.statusText};
 }
 
+/**
+ * Nos permite cambiar el status de la consulta en el backend
+ */
 export const changeConsultaStatus = async (id: string, is_active: boolean) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -113,6 +128,9 @@ export const changeConsultaStatus = async (id: string, is_active: boolean) => {
     else return {error: res.statusText};
 }
 
+/**
+ * Nos permite obtener los datos especificos de un paciente
+ */
 export const getPaciente = async() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
