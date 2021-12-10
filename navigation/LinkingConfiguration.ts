@@ -18,6 +18,9 @@ const linking: LinkingOptions<RootStackParamList> = {
           TabOne: {
             screens: {
               TabOneScreen: 'one',
+              ModalCreate: 'modalcreate',
+              Modal: 'modal',
+              Creditos: 'creditos'
             },
           },
           TabTwo: {
@@ -25,12 +28,15 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'two',
               Modal: 'modal',
               NotFound: '*',
+              Creditos: 'creditos'
             },
           },
         },
       },
       Modal: 'modal',
+      ModalCreate: 'modalcreate',
       NotFound: '*',
+      Creditos: 'creditos'
     },
   },
 };

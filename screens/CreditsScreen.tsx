@@ -1,59 +1,41 @@
 import * as React from 'react';
 import {Image, ScrollView, StyleSheet, Switch, TouchableOpacity} from 'react-native';
 
+import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
-import {FontAwesome} from "@expo/vector-icons";
-import {useEffect, useState} from "react";
-import {Paciente} from "../typesData";
-import {getAllConsultorios, getPaciente} from "../utils";
 
-export default function TabPacienteScreen() {
 
-    const [user, setUser] = useState<Paciente | null>(null)
-
-    useEffect(() => {
-        async function fetchData() {
-            const res = await getPaciente()
-            if (!res.error)
-                setUser(res.result)
-        }
-
-        fetchData()
-    }, [])
-
+export default function CreditsScreen() {
     return (
         <ScrollView>
 
             <View style={styles.container}>
-                {user && <>
-                    <Image style={styles.image} source={require('../assets/images/Corpus.png')}/>
-                    <Text style={styles.header}>Hola, {user.nombre.split(' ')[0]}</Text>
+
+                    <Text style={styles.header}>Créditos</Text>
                     <View style={styles.inputContainer}>
-                        <Text style={styles.title}>ID de Paciente:</Text>
+                        <Text style={styles.title}>Materia:</Text>
                         <Text
                             style={styles.inputValue}
-                        >{user._id}</Text>
+                        >Fundamentos del desarrollo móvil</Text>
                     </View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.title}>Nombre completo:</Text>
-                        <Text
-                            style={styles.inputValue}
-                        >{user.nombre}</Text>
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.title}>Teléfono:</Text>
-                        <Text
-                            style={styles.inputValue}
-                        >{user.telefono}</Text>
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.title}>Edad:</Text>
-                        <Text
-                            style={styles.inputValue}
-                        >{user.edad}</Text>
-                    </View>
-                </>
-                }
+                <View style={styles.inputContainer}>
+                    <Text style={styles.title}>Profesor:</Text>
+                    <Text
+                        style={styles.inputValue}
+                    >Francisco Everardo Estrada Velázquez</Text>
+                </View>
+                <View style={styles.inputContainer}>
+                    <Text style={styles.title}>Ingtegrantes:</Text>
+                    <Text
+                        style={styles.inputValue}
+                    > {"> Luis Angel Alvarado Hernández "}  </Text>
+                    <Text
+                        style={styles.inputValue}
+                    > {"> Alejandro Moctezuma Luna"} </Text>
+                    <Text
+                        style={styles.inputValue}
+                    > {"> Luis Fernando Vázquez Nieto"} </Text>
+                </View>
             </View>
         </ScrollView>
 
@@ -75,7 +57,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: '10%',
         //paddingBottom: '20%',
-        height: '90%'
+        height: '100%'
     },
     header: {
         fontSize: 25,

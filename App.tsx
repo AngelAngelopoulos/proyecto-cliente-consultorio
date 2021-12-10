@@ -5,6 +5,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import {AntDesign, FontAwesome} from "@expo/vector-icons";
+import {TouchableOpacity, StyleSheet} from "react-native";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,7 +19,12 @@ export default function App() {
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
+
       </SafeAreaProvider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+})

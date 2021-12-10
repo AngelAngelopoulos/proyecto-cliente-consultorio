@@ -18,6 +18,8 @@ import TabConsultasScreen from '../screens/TabConsultasScreen';
 import TabPacienteScreen from '../screens/TabPacienteScreen';
 import {RootStackParamList, RootTabParamList, RootTabScreenProps} from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import ModalCreateScreen from "../screens/ModalCreateScreen";
+import CreditsScreen from "../screens/CreditsScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     return (
@@ -42,6 +44,8 @@ function RootNavigator() {
             <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
             <Stack.Group screenOptions={{presentation: 'modal'}}>
                 <Stack.Screen name="Modal" component={ModalScreen}/>
+                <Stack.Screen name="ModalCreate" component={ModalCreateScreen}/>
+                <Stack.Screen name="Creditos" component={CreditsScreen}/>
             </Stack.Group>
         </Stack.Navigator>
     );
@@ -61,16 +65,18 @@ function BottomTabNavigator() {
             initialRouteName="TabOne"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
-            }}>
+            }}
+        >
             <BottomTab.Screen
                 name="TabOne"
                 component={TabConsultasScreen}
                 options={({navigation}: RootTabScreenProps<'TabOne'>) => ({
                     title: 'Mis Consultas',
+                    headerTitleAllowFontScaling: true,
                     tabBarIcon: ({color}) => <TabBarIcon name="calendar-o" color={color}/>,
                     headerRight: () => (
                         <Pressable
-                            onPress={() => navigation.navigate('Modal')}
+                            onPress={() => navigation.navigate('Creditos')}
                             style={({pressed}) => ({
                                 opacity: pressed ? 0.5 : 1,
                                 paddingRight: '20%'
@@ -93,7 +99,7 @@ function BottomTabNavigator() {
                     tabBarIcon: ({color}) => <TabBarIcon name="user" color={color}/>,
                     headerRight: () => (
                         <Pressable
-                            onPress={() => navigation.navigate('Modal')}
+                            onPress={() => navigation.navigate('Creditos')}
                             style={({pressed}) => ({
                                 opacity: pressed ? 0.5 : 1,
                                 paddingRight: '20%'

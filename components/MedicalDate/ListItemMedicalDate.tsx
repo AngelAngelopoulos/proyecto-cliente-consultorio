@@ -3,12 +3,11 @@ import {Button, StyleSheet, TouchableOpacity, View as NativeView} from "react-na
 import {Text, View} from "../Themed";
 import {FontAwesome} from "@expo/vector-icons";
 
-import { Consulta } from '../../types/index'
+import { Consulta } from '../../typesData/index'
 
 interface Props {
     navigation: any,
     consulta: Consulta
-
 }
 
 export const ListItemMedicalDate = (props: Props) => {
@@ -24,7 +23,8 @@ export const ListItemMedicalDate = (props: Props) => {
             direccion: consulta.consultorio.direccion,
             telefono: consulta.consultorio.telefono,
             prioridad: consulta.prioridad,
-            _id: consulta._id
+            _id: consulta._id,
+            is_active: consulta.is_active
 
         })
     }
@@ -55,17 +55,20 @@ export const ListItemMedicalDate = (props: Props) => {
 
 const styles = StyleSheet.create({
     turnItem: {
-        flex: 1,
         flexDirection: 'row',
         alignContent: "flex-start",
         alignItems: 'flex-start',
         textAlignVertical: 'bottom',
         justifyContent: 'flex-end',
-        width: '90%'
+        width: '90%',
+
+        backgroundColor: '#fff'
+
     },
     turnLabelItemView: {
         paddingHorizontal: 8,
-        paddingTop: 8,
+        paddingTop: 4,
+        backgroundColor: 'transparent'
 
     },
     turnLabelItem: {
@@ -93,12 +96,13 @@ const styles = StyleSheet.create({
         alignContent: 'flex-start',
         alignItems: 'flex-start',
         textAlign: 'left',
-        marginVertical: 12
+        marginVertical: 12,
 
+        backgroundColor: '#fff'
     },
     cardTitle: {
         textAlign: 'left',
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold'
     }
 });

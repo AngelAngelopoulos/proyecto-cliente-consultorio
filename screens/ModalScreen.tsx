@@ -16,7 +16,7 @@ import {Text, View} from '../components/Themed';
 import {InitialProps} from "expo/build/launch/withExpoRoot.types";
 import {FontAwesome} from "@expo/vector-icons";
 import {useEffect, useState} from "react";
-import {changePrioridad} from "../utils";
+import {changeConsultaStatus, changePrioridad} from "../utils";
 
 interface Props {
     route: any,
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function ModalScreen(props: any) {
-    const {consultorio, direccion, telefono, turno_consulta, prioridad , _id} = props.route.params;
+    const {consultorio, direccion, telefono, turno_consulta, prioridad , _id, is_active} = props.route.params;
     const {navigation} = props
     const [isEnabled, setIsEnabled] = useState(prioridad === "Urgente");
     const [prioridadState, setPrioridadState] = useState(prioridad)
@@ -91,15 +91,22 @@ export default function ModalScreen(props: any) {
         );
 
 
+    const cancelConsulta = () => {
+        async function changeStatusAsync() {
+            const res = await changeConsultaStatus(_id, false)
+            if (!res.error)
+                changePriorAlert()
+            //console.log(res.result)
+        }
+        changeStatusAsync();
+    }
 
     return (
 
 
 
             <ScrollView>
-                <KeyboardAvoidingView
-                    keyboardVerticalOffset={-100}
-                    behavior={'position'}>
+
                 <View style={styles.container}>
                     <Text style={styles.header}>Detalles de consulta</Text>
                     <View style={styles.inputContainer}>
@@ -111,17 +118,15 @@ export default function ModalScreen(props: any) {
                     <View style={styles.inputContainer}>
                         <Text style={styles.title}>Dirección:</Text>
 
-                        <TextInput
+                        <Text
                             style={styles.inputValue}
-                            defaultValue={direccion}
-                        />
+                        >{direccion}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.title}>Telefono:</Text>
-                        <TextInput
+                        <Text
                             style={styles.inputValue}
-                            defaultValue={telefono}
-                        />
+                        >{telefono}</Text>
                     </View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.title}>Prioridad:</Text>
@@ -148,18 +153,18 @@ export default function ModalScreen(props: any) {
                             />
                         </View>
                     </View>
-
-                    <TouchableOpacity
-                        style={styles.buttonForm}
-                        onPress={createConfirmAlert}
-                    ><Text style={styles.title}>Cancelar</Text></TouchableOpacity>
+                    {
+                        is_active &&
+                        <TouchableOpacity
+                            style={styles.buttonForm}
+                            onPress={cancelConsulta}
+                        ><Text style={styles.title}>Cancelar</Text></TouchableOpacity>
+                    }
 
 
                     {/* Use a light status bar on iOS to account for the black space above the modal */}
 
                 </View>
-
-                </KeyboardAvoidingView>
             </ScrollView>
 
 

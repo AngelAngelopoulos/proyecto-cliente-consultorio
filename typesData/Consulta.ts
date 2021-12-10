@@ -9,6 +9,7 @@ export interface Consulta {
     "fecha": string,
     "hora": string,
     "paciente": string,
+    "is_active": boolean
 }
 
 export interface Consultorio {
@@ -16,6 +17,7 @@ export interface Consultorio {
     "direccion": string,
     "telefono": string,
     "nombre": string,
+    "medicos": Medico[]
 }
 
 export interface Medico {
@@ -23,4 +25,11 @@ export interface Medico {
     "especialidad": string,
     "telefono": string,
     "nombre": string,
+}
+
+export interface Paciente {
+    "_id": string,
+    "nombre": string,
+    "telefono": string,
+    "edad": number
 }
